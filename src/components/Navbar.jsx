@@ -3,8 +3,8 @@ import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <div>
-      <div className=" mt-5 flex justify-evenly text-white ">
+    <div className="w-full z-100 fixed top-4 left-0 bg-transparent px-6">
+      <div className=" mt-5 flex justify-between text-white ">
         <ul className="navlist inline-flex gap-x-3 items-center ">
           <li>Home</li>
 

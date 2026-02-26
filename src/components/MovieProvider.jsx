@@ -8,7 +8,6 @@ const MovieProvider = ({ children }) => {
 
   const [allMovies, setallMovies] = useState([]);
   const [loading, setloading] = useState(true);
-  const [bgImage, setbgImage] = useState("");
   const [displaytext, setdisplaytext] = useState("");
 
   useEffect(() => {
@@ -18,20 +17,8 @@ const MovieProvider = ({ children }) => {
   const fetchMovies = async () => {
     try {
       const response = await axios.get(`${api_url}?api_key=${api_key}`);
+      setallMovies(response.data.results);
 
-      console.log(response.data);
-      // console.log(response.data.total_pages);
-      // console.log(response.data.page);
-
-      for (let i = 1; i <= 500; i++) {
-        const response = await axios.get(
-          `${api_url}?api_key=${api_key}&page=${i}`,
-        );
-        // console.log(response.data);
-        setallMovies((prevMovies) => [...prevMovies, ...response.data.results]);
-
-        // console.log(allMovies);
-      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -39,15 +26,20 @@ const MovieProvider = ({ children }) => {
     }
   };
 
+  const popularMovies = [...allMovies]
+  popularMovies.sort((a, b) => a.popularity - b.popularity).splice(0, 10);
+  const [showcaseMovie, setshowcaseMovie] = useState(popularMovies[0])  
+
+
   return (
     <MovieContext.Provider
       value={{
         allMovies,
         loading,
-        bgImage,
-        setbgImage,
         displaytext,
         setdisplaytext,
+        popularMovies,
+        showcaseMovie
       }}
     >
       {children}
