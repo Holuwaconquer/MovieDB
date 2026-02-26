@@ -10,6 +10,7 @@ const Landing = () => {
     (max, movie) => (movie.popularity > max.popularity ? movie : max),
     allMovies[0],
   );
+  
   useEffect(() => {
     if (allMovies.length > 0 && !bgImage) {
       setbgImage(

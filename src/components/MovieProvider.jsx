@@ -23,7 +23,7 @@ const MovieProvider = ({ children }) => {
       // console.log(response.data.total_pages);
       // console.log(response.data.page);
 
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 500; i++) {
         const response = await axios.get(
           `${api_url}?api_key=${api_key}&page=${i}`,
         );

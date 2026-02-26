@@ -10,6 +10,15 @@ const Display = () => {
     allMovies[0],
   );
 
+  function handleclick(movie) {
+    console.log(movie);
+    
+    setbgImage(movie.backdrop_path);
+    setdisplaytext(
+      `${movie.title} (${movie.release_date.split("-").splice(0, 1)} ${movie.overview}`,
+    );
+  }
+
   return (
     <div>
       <div className="mt-10 p-10">
@@ -22,6 +31,7 @@ const Display = () => {
         {allMovies.map((movie, index) => (
           <div className="w-50 h-40 " key={index}>
             <img
+              onClick={() => handleclick(movie)}
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
               alt=""
             />
