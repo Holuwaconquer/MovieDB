@@ -2,17 +2,24 @@ import React, { useContext, useEffect, useState } from "react";
 import { MovieContext } from "./MovieContext";
 
 const Display = () => {
-  const { allMovies, displaytext, setdisplaytext, popularMovies } =
-    useContext(MovieContext);
+  const {
+    allMovies,
+    displaytext,
+    setdisplaytext,
+    popularMovies,
+    showcaseMovieState,
+    setshowcaseMovieState,
+  } = useContext(MovieContext);
 
   console.log(popularMovies);
 
   let showcaseMovie = popularMovies && popularMovies[9];
-  const [showcaseMovieState, setshowcaseMovieState] = useState(showcaseMovie);
 
   useEffect(() => {
-    setshowcaseMovieState(showcaseMovie);
-  }, [popularMovies]);
+    if (!showcaseMovieState && popularMovies?.length) {
+      setshowcaseMovieState(popularMovies[0]);
+    }
+  }, [popularMovies, showcaseMovieState]);
 
   const imageBaseURL = "https://image.tmdb.org/t/p/original";
 
@@ -24,13 +31,15 @@ const Display = () => {
       }}
       className="w-full relative top-0 flex flex-col gap-4 justify-start px-6 pt-[10%]"
     >
-      <div className="w-full flex flex-col gap-4">
+      <div className="w-full flex flex-col gap-4 mt-40">
         <div>
-          <h2 className="text-white font-bold text-[28px] mb-4">
+          <h2 className="text-white font-bold text-[28px] mb-4 leading-10">
             {showcaseMovieState?.title}(
             {showcaseMovieState?.release_date.split("-").splice(0, 1)})
           </h2>
-          <p className="text-white w-[60%]">{showcaseMovieState?.overview}</p>
+          <p className="text-white w-[80%] md:w-[40%] font-semibold leading-6">
+            {showcaseMovieState?.overview}
+          </p>
         </div>
         {/* for more details */}
         <div className="w-full flex justify-between items-center">
@@ -59,9 +68,14 @@ const Display = () => {
         </div>
       </div>
 
-      <div className="grid grid-flow-col auto-cols-auto gap-x-2 overflow-x-auto whitespace-nowrap">
+      <div className="grid grid-flow-col auto-cols-auto gap-x-3 overflow-x-auto">
         {popularMovies?.map((movie, index) => (
-          <div className="w-50 h-40 " key={index}>
+          <div
+            className={`transition-all duration-300 cursor-pointer w-50 h-40 overflow-hidden hover:opacity-90
+      ${showcaseMovieState?.id === movie.id ? "scale-115" : "opacity-70 "}
+    `}
+            key={index}
+          >
             <img
               onClick={() => setshowcaseMovieState(movie)}
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}

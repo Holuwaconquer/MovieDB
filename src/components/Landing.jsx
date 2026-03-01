@@ -3,7 +3,8 @@ import Navbar from "./Navbar";
 import { Outlet } from "react-router";
 import Display from "../Display";
 import { MovieContext } from "../MovieContext";
-import Trending from "./Trending";
+import Others from "../Others";
+import Footer from "../footer";
 
 const Landing = () => {
   // const { allMovies, loading, popularMovies } = useContext(MovieContext);
@@ -35,7 +36,8 @@ const Landing = () => {
         <div className="relative-4">
           <Navbar />
           <Display />
-          <Trending />
+          <Others />
+          <Footer />
           <Outlet />
         </div>
       </div>
