@@ -48,8 +48,8 @@ const Others = () => {
         {newReleases?.map((releases, index) => (
           <div
             className={`transition-all duration-300 cursor-pointer w-50 h-40 overflow-hidden hover:opacity-90
-      ${showcaseMovieState?.id === releases.id ? "scale-115" : "opacity-70 "}
-    `}
+              ${showcaseMovieState?.id === releases.id ? "scale-115" : "opacity-70 "}
+            `}
             key={releases.id}
           >
             <img

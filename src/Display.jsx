@@ -29,7 +29,7 @@ const Display = () => {
         background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${imageBaseURL}${showcaseMovieState?.backdrop_path}) center center`,
         minHeight: "100vh",
       }}
-      className="w-full relative top-0 flex flex-col gap-4 justify-start px-6 pt-[10%]"
+      className="w-full relative top-0 flex flex-col gap-4 justify-start px-6 pt-[5%] md:pt-[10%] bg-cover! bg-no-repeat"
     >
       <div className="w-full flex flex-col gap-4 mt-40">
         <div>
@@ -37,12 +37,12 @@ const Display = () => {
             {showcaseMovieState?.title}(
             {showcaseMovieState?.release_date.split("-").splice(0, 1)})
           </h2>
-          <p className="text-white w-[80%] md:w-[40%] font-semibold leading-6">
+          <p className="text-white text-[14px] w-full md:w-[40%] font-semibold leading-6">
             {showcaseMovieState?.overview}
           </p>
         </div>
         {/* for more details */}
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex flex-wrap gap-4 md:gap-0 justify-between items-center">
           {/* for the left side */}
           <div className="flex flex-col items-start flex-wrap gap-4 border-l-15 border-red-700 pl-4 text-white">
             <div className="flex gap-4">
@@ -50,7 +50,7 @@ const Display = () => {
               <h1 className="underline">Thriller</h1>
             </div>
 
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-wrap gap-4 items-center">
               <h1 className="font-bold">IMDB {showcaseMovie?.vote_average}</h1>
               <h1 className="tracking-tight font-semibold">2 h 18 min</h1>
               <h1 className="bg-[#7C7C7C] text-[white rounded-[5px] px-2">
